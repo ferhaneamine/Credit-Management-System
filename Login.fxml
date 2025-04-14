@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="358.0" prefWidth="606.0" xmlns:jfx="http://jfoenix.com/javafx" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <VBox alignment="CENTER" layoutX="53.0" layoutY="32.0" prefHeight="326.0" prefWidth="487.0" spacing="15.0" AnchorPane.leftAnchor="53.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="32.0">
+            <children>
+                <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Gestion des Créances" />
+
+                <Label prefHeight="20.0" prefWidth="250.0" style="-fx-text-fill: #666;" text="Connectez-vous pour accéder à votre compte" />
+
+                <JFXTextField labelFloat="true" promptText="Nom d'utilisateur">
+                    <padding><Insets bottom="5" top="5" /></padding>
+                </JFXTextField>
+
+                <JFXPasswordField labelFloat="true" promptText="Mot de passe">
+                    <padding><Insets bottom="5" top="5" /></padding>
+                </JFXPasswordField>
+
+                <JFXButton prefHeight="33.0" prefWidth="200" style="-fx-background-color: #2a64b8; -fx-text-fill: white;" text="Se connecter" />
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
