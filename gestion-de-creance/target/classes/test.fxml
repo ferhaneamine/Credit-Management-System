@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="10.0" alignment="CENTER" xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/8">
+    <JFXTextField promptText="Enter something..." />
+    <JFXButton text="Click Me!" />
+</VBox>
