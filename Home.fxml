@@ -12,155 +12,142 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<BorderPane fx:controller="code.HomeController"
+            maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="617.0" prefWidth="985.0"
+            stylesheets="@/style.css"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            xmlns:jfoenix="http://jfoenix.com">
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="985.0" xmlns:jfx="http://jfoenix.com/javafx" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <!-- Top Header -->
     <top>
-        <HBox fx:id="gestiondescreances" nodeOrientation="LEFT_TO_RIGHT" prefHeight="28.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-            <children>
-                <Label alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="35.0" prefWidth="158.0" text=" Gestion des Créances" textFill="#2a64b8">
-                    <font>
-                        <Font name="System Bold" size="15.0" />
-                    </font>
-                </Label>
-            </children>
+        <HBox style="-fx-padding: 10; -fx-background-color: #f8f9fa;" alignment="CENTER_LEFT">
+            <!-- App Title -->
+            <Label text="Gestion des Créances" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #2a64b8;"/>
+
+            <!-- Spacer -->
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <!-- Top-Right: [Déconnexion] [Administrateur 🛡️] -->
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <!-- Logout Button -->
+                <Button text="Déconnexion" onAction="#handleLogout"
+                        style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-background-radius: 4; -fx-padding: 5 12;"/>
+
+                <!-- Admin Label -->
+                <HBox alignment="CENTER" spacing="5" style="-fx-background-color: #e9ecef; -fx-background-radius: 15; -fx-padding: 3 10;">
+                    <Label fx:id="adminLabel" text="Administrateur" style="-fx-font-weight: bold;"/>
+                    <ImageView fitWidth="16" fitHeight="16">
+
+                    </ImageView>
+                </HBox>
+            </HBox>
         </HBox>
     </top>
-    <left>
 
-    </left>
+    <!-- Left Side Menu -->
     <left>
-        <VBox fx:id="sideMenu" alignment="TOP_CENTER" prefHeight="562.0" prefWidth="153.0" spacing="15.0" style="-fx-background-color: #273c75;" BorderPane.alignment="TOP_CENTER">
-
+        <VBox alignment="TOP_CENTER" prefWidth="180" style="-fx-background-color: #273c75; -fx-spacing: 15; -fx-padding: 20;">
             <children>
-                <Label fx:id="creancepro" prefHeight="48.0" prefWidth="85.0" style="-fx-font-size: 15px; -fx-text-fill: black; -fx-font-weight: bold;" text="CreancePro">
-                    <VBox.margin>
-                        <Insets left="-40.0" />
-                    </VBox.margin>
-                </Label>
-                <Separator fx:id="buttontableaudebord" prefHeight="12.0" prefWidth="134.0">
-                    <VBox.margin>
-                        <Insets />
-                    </VBox.margin>
-                    <padding>
-                        <Insets top="-45.0" />
-                    </padding>
-                </Separator>
-                <Button mnemonicParsing="false" prefWidth="180.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Tableau de bord">
-                    <padding>
-                        <Insets left="-15.0" top="-40.0" />
-                    </padding>
+                <Label text="CreancePro" style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                <Separator style="-fx-padding: 5 0 5 0;"/>
+
+                <Button fx:id="dashboardBtn" text="Tableau de bord" onAction="#showDashboard"
+                        style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: CENTER_LEFT;">
                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/dashboard.png" />
-                            </image>
+                        <ImageView fitWidth="20" fitHeight="20">
+                            <Image url="@/images/dashboard.png"/>
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button fx:id="bouttonclients" mnemonicParsing="false" prefWidth="180.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Clients">
-                    <padding>
-                        <Insets left="-65.0" top="-5.0" />
-                    </padding>
+
+                <Button fx:id="clientsBtn" text="Clients" onAction="#showClientsView"
+                        style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: CENTER_LEFT;">
                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/supplier.png" />
-                            </image>
+                        <ImageView fitWidth="20" fitHeight="20">
+                            <Image url="@/images/supplier.png"/>
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button fx:id="bouttonfactures" mnemonicParsing="false" prefWidth="180.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Factures">
-                    <padding>
-                        <Insets left="-60.0" top="5.0" />
-                    </padding>
+
+                <Button fx:id="invoicesBtn" text="Factures" onAction="#showInvoicesView"
+                        style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: CENTER_LEFT;">
                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/invoice.png" />
-                            </image>
+                        <ImageView fitWidth="20" fitHeight="20">
+                            <Image url="@/images/invoice.png"/>
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button fx:id="bouttonpaiments" mnemonicParsing="false" prefHeight="28.0" prefWidth="153.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Paiements">
-                    <padding>
-                        <Insets left="-45.0" top="6.0" />
-                    </padding>
+
+                <Button fx:id="paymentsBtn" text="Paiements" onAction="#showPaymentsView"
+                        style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: CENTER_LEFT;">
                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/payment.png" />
-                            </image>
+                        <ImageView fitWidth="20" fitHeight="20">
+                            <Image url="@/images/payment.png"/>
                         </ImageView>
                     </graphic>
                 </Button>
             </children>
         </VBox>
     </left>
+
+    <!-- Main Content -->
     <center>
-        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+        <VBox style="-fx-padding: 20;" spacing="10">
             <children>
-                <Label fx:id="tableaudebord" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="166.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Tableau de bord" textAlignment="CENTER" textFill="#110f0f">
-                    <padding>
-                        <Insets left="12.0" top="20.0" />
-                    </padding>
-                </Label>
+                <Label text="Tableau de bord" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
 
-                <HBox fx:id="statsContainer" alignment="CENTER" prefHeight="172.0" prefWidth="832.0" spacing="20" style="-fx-padding: 20; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-width: 1;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-
-                    <!-- Bloc 1 : Total créances -->
-                    <VBox fx:id="totalcreances" alignment="TOP_LEFT" prefHeight="160.0" prefWidth="197.0" spacing="5" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);">
-                        <Label style="-fx-text-fill: #7f8c8d; -fx-font-size: 12px;" text="total créances" />
-                        <Label fx:id="labelTotalCreances" style="-fx-font-size: 20px; -fx-text-fill: #000000; -fx-font-weight: bold;" text="0 DA" />
-                        <Label fx:id="pourcentageCreances" style="-fx-text-fill: #888888; -fx-font-size: 11px;" text="0% depuis le mois dernier" />
+                <!-- Stats Cards -->
+                <HBox spacing="20" style="-fx-padding: 10;">
+                    <!-- Total créances -->
+                    <VBox spacing="5" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                        <Label text="Total créances" style="-fx-text-fill: #7f8c8d; -fx-font-size: 12;"/>
+                        <Label fx:id="totalCreancesLabel" text="34 881 DA" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+                        <Label fx:id="creancesPercentage" text="12% depuis le mois dernier" style="-fx-text-fill: #888888; -fx-font-size: 11;"/>
                     </VBox>
 
-                    <!-- Bloc 2 : Montant payé -->
-                    <VBox fx:id="montantpaye" alignment="TOP_LEFT" prefHeight="160.0" prefWidth="197.0" spacing="5" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);">
-                        <Label style="-fx-text-fill: #7f8c8d; -fx-font-size: 12px;" text="montant payé" />
-                        <Label fx:id="labelMontantPaye" style="-fx-font-size: 20px; -fx-text-fill: #000000; -fx-font-weight: bold;" text="0 DA" />
-                        <Label fx:id="pourcentagePaye" style="-fx-text-fill: #888888; -fx-font-size: 11px;" text="0% depuis le mois dernier" />
+                    <!-- Montant payé -->
+                    <VBox spacing="5" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                        <Label text="Montant payé" style="-fx-text-fill: #7f8c8d; -fx-font-size: 12;"/>
+                        <Label fx:id="paidAmountLabel" text="15 701 DA" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+                        <Label fx:id="paidPercentage" text="8% depuis le mois dernier" style="-fx-text-fill: #888888; -fx-font-size: 11;"/>
                     </VBox>
 
-                    <!-- Bloc 3 : Paiements en attente -->
-                    <VBox fx:id="nbfactures" alignment="TOP_LEFT" prefHeight="160.0" prefWidth="197.0" spacing="5" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);">
-                        <Label style="-fx-text-fill: #7f8c8d; -fx-font-size: 12px;" text="paiements en attente" />
-                        <Label fx:id="labelNbFacturesAttente" style="-fx-font-size: 20px; -fx-text-fill: #000000; -fx-font-weight: bold;" text="0 Factures" />
-                        <Label fx:id="labelMontantAttente" style="-fx-font-size: 11px; -fx-text-fill: #888888;" text="0 DA" />
+                    <!-- Paiements en attente -->
+                    <VBox spacing="5" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                        <Label text="Paiements en attente" style="-fx-text-fill: #7f8c8d; -fx-font-size: 12;"/>
+                        <Label fx:id="pendingInvoicesLabel" text="4 Factures" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+                        <Label fx:id="pendingAmountLabel" text="25 681 DA" style="-fx-text-fill: #888888; -fx-font-size: 11;"/>
                     </VBox>
 
-                    <!-- Bloc 4 : Paiements en retard -->
-                    <VBox fx:id="paimentsenretard" alignment="TOP_LEFT" prefHeight="180.0" prefWidth="197.0" spacing="5" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);">
-                        <Label style="-fx-text-fill: #7f8c8d; -fx-font-size: 12px;" text="paiements en retard" />
-                        <Label fx:id="labelNbFacturesRetard" style="-fx-font-size: 20px; -fx-text-fill: #000000; -fx-font-weight: bold;" text="0 Factures" />
-                        <Label fx:id="labelMontantRetard" style="-fx-font-size: 11px; -fx-text-fill: #7f8c8d;" text="0 DA" />
-                        <Label fx:id="pourcentageRetard" style="-fx-text-fill: #7f8c8d; -fx-font-size: 11px;" text="0% depuis le mois dernier" />
+                    <!-- Paiements en retard -->
+                    <VBox spacing="5" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                        <Label text="Paiements en retard" style="-fx-text-fill: #7f8c8d; -fx-font-size: 12;"/>
+                        <Label fx:id="lateInvoicesLabel" text="2 Factures" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+                        <Label fx:id="lateAmountLabel" text="11 200 DA" style="-fx-text-fill: #888888; -fx-font-size: 11;"/>
+                        <Label fx:id="latePercentage" text="5% depuis le mois dernier" style="-fx-text-fill: #888888; -fx-font-size: 11;"/>
                     </VBox>
-
                 </HBox>
-                <!-- Factures Récentes -->
-                <VBox spacing="10" style="-fx-padding: 20;">
-                    <children>
-                        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Factures Récentes">
-                     <VBox.margin>
-                        <Insets left="-5.0" />
-                     </VBox.margin></Label>
 
-                        <TableView fx:id="facturesRecents" prefHeight="314.0" prefWidth="792.0">
-                            <columns>
-                                <TableColumn fx:id="colReference" prefWidth="150" text="Référence" />
-                                <TableColumn fx:id="colFournisseur" prefWidth="200" text="Fournisseur" />
-                                <TableColumn fx:id="colDateEcheance" prefWidth="150" text="Date d'échéance" />
-                                <TableColumn fx:id="colMontant" prefWidth="100" text="Montant" />
-                                <TableColumn fx:id="colStatut" prefWidth="100" text="Statut" />
-                            </columns>
-                        </TableView>
-                    </children>
+                <!-- Recent Invoices Table -->
+                <VBox spacing="10">
+                    <Label text="Factures Récentes" style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                    <TableView fx:id="invoicesTable" styleClass="table-view" prefHeight="300" prefWidth="792">
+                        <columns>
+                            <TableColumn fx:id="refColumn" text="Référence" prefWidth="150"/>
+                            <TableColumn fx:id="clientColumn" text="Client" prefWidth="200"/>
+                            <TableColumn fx:id="dueDateColumn" text="Date d'échéance" prefWidth="150"/>
+                            <TableColumn fx:id="amountColumn" text="Montant" prefWidth="100"/>
+                            <TableColumn fx:id="statusColumn" text="Statut" prefWidth="100"/>
+                        </columns>
+                    </TableView>
                 </VBox>
-
-
             </children>
         </VBox>
-
-
     </center>
 </BorderPane>
